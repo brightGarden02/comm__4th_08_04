@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS a9;
-CREATE DATABASE a9;
-USE a9;
+DROP DATABASE IF EXISTS blog;
+CREATE DATABASE blog;
+USE blog;
 
 # article 테이블 생성
 CREATE TABLE article (
