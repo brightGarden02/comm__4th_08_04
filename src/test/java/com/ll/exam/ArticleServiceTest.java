@@ -59,7 +59,7 @@ public class ArticleServiceTest {
     private void makeArticleTestData() {
 
         IntStream.rangeClosed(1, TEST_DATA_SIZE).forEach(no -> {
-            boolean isBlind = false;
+            boolean isBlind = no >= 11 && no <= 20;
             String title = "제목%d".formatted(no);
             String body = "내용%d".formatted(no);
 
@@ -198,5 +198,12 @@ public class ArticleServiceTest {
         assertThat(nullArticleDto).isNull();
     }
 
+
+    @Test
+    public void _10번글의_다음글은_21번글_이다_왜냐하면_11번글부터_20번글까지는_블라인드라서() {
+        ArticleDto nextArticleDto = articleService.getNextArticle(10);
+
+        assertThat(nextArticleDto.getId()).isEqualTo(21);
+    }
 
 }
