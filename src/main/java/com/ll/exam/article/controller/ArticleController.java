@@ -2,10 +2,7 @@ package com.ll.exam.article.controller;
 
 
 import com.ll.exam.Rq;
-import com.ll.exam.annotation.Autowired;
-import com.ll.exam.annotation.Controller;
-import com.ll.exam.annotation.GetMapping;
-import com.ll.exam.annotation.PostMapping;
+import com.ll.exam.annotation.*;
 import com.ll.exam.article.service.ArticleService;
 import com.ll.exam.dto.ArticleDto;
 
@@ -74,6 +71,27 @@ public class ArticleController {
 
         rq.setAttr("article", articleDto);
         rq.view("usr/article/detail");
+    }
+
+    @DeleteMapping("/usr/article/delete/{id}")
+    public void delete(Rq rq) {
+        long id = rq.getLongParam("id", 0);
+
+        if (id == 0) {
+            rq.historyBack("번호를 입력해주세요.");
+            return;
+        }
+
+        ArticleDto articleDto = articleService.getArticleById(id);
+
+        if (articleDto == null) {
+            rq.historyBack("해당 글이 존재하지 않습니다.");
+            return;
+        }
+
+        articleService.delete(id);
+
+        rq.replace("/usr/article/list", "%d번 게시물이 삭제 되었습니다.".formatted(id));
     }
 
 }

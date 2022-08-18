@@ -1,8 +1,6 @@
 package com.ll.exam;
 
-import com.ll.exam.annotation.Controller;
-import com.ll.exam.annotation.GetMapping;
-import com.ll.exam.annotation.PostMapping;
+import com.ll.exam.annotation.*;
 import com.ll.exam.mymap.MyMap;
 import com.ll.exam.util.Ut;
 import jakarta.servlet.http.HttpServletRequest;
@@ -34,7 +32,8 @@ public class ControllerManager {
 
                 GetMapping getMapping = method.getAnnotation(GetMapping.class);
                 PostMapping postMapping = method.getAnnotation(PostMapping.class);
-
+                DeleteMapping deleteMapping = method.getAnnotation(DeleteMapping.class);
+                PutMapping putMapping = method.getAnnotation(PutMapping.class);
 
                 String httpMethod = null;
                 String path = null;
