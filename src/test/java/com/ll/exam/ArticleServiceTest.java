@@ -156,4 +156,17 @@ public class ArticleServiceTest {
         assertThat(diffSeconds).isLessThanOrEqualTo(1L);
     }
 
+
+    @Test
+    public void delete() {
+
+        ArticleService articleService = Container.getObj(ArticleService.class);
+
+        articleService.delete(1);
+
+        ArticleDto articleDto = articleService.getArticleById(1);
+
+        assertThat(articleDto).isNull();
+    }
+
 }
