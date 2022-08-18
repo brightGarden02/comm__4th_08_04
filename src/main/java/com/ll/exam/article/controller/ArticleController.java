@@ -5,6 +5,7 @@ import com.ll.exam.Rq;
 import com.ll.exam.annotation.Autowired;
 import com.ll.exam.annotation.Controller;
 import com.ll.exam.annotation.GetMapping;
+import com.ll.exam.annotation.PostMapping;
 import com.ll.exam.article.service.ArticleService;
 import com.ll.exam.dto.ArticleDto;
 
@@ -31,5 +32,27 @@ public class ArticleController {
     public void showWrite(Rq rq) {
         rq.view("usr/article/write");
     }
+
+    @PostMapping("/usr/article/write")
+    public void write(Rq rq) {
+
+        String title = rq.getParam("title", "");
+        String body = rq.getParam("body", "");
+
+        if(title.length() == 0) {
+            rq.historyBack("제목을 입력해주세요.");
+            return;
+        }
+
+        if(body.length() == 0) {
+            rq.historyBack("내용을 입력해주세요.");
+            return;
+        }
+
+        long id = articleService.write(title, body);
+
+        rq.replace("/usr/article/detail/free/%d".formatted(id), "%d번 게시물이 생성 되었습니다.".formatted(id));
+    }
+
 
 }

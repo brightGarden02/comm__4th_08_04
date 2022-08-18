@@ -2,6 +2,7 @@ package com.ll.exam;
 
 import com.ll.exam.annotation.Controller;
 import com.ll.exam.annotation.GetMapping;
+import com.ll.exam.annotation.PostMapping;
 import com.ll.exam.mymap.MyMap;
 import com.ll.exam.util.Ut;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,7 +11,6 @@ import org.reflections.Reflections;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.net.http.HttpRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,6 +33,8 @@ public class ControllerManager {
             for(Method method : methods) {
 
                 GetMapping getMapping = method.getAnnotation(GetMapping.class);
+                PostMapping postMapping = method.getAnnotation(PostMapping.class);
+
 
                 String httpMethod = null;
                 String path = null;
@@ -41,6 +43,11 @@ public class ControllerManager {
                     path = getMapping.value();
                     httpMethod = "GET";
                 }
+                else if(postMapping != null) {
+                    path = postMapping.value();
+                    httpMethod = "POST";
+                }
+
 
                 if(path != null && httpMethod != null) {
                     String actionPath = Ut.str.beforeFrom(path, "/", 4);
