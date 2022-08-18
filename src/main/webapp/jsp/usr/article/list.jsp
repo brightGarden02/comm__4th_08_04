@@ -13,18 +13,14 @@
 
         <ul class="mt-5">
             <c:forEach items="${articles}" var="article">
-                <li class="flex">
-                    번호 : ${article.id}
-                    <br />
-                    등록날짜 : ${article.createdDate}
-                    <br />
-                    수정날짜 : ${article.createdDate}
-                    <br />
-                    제목 : ${article.title}
+                li>
+                <a href="/usr/article/detail/${article.id}">
+                    <div class="badge badge-primary">${article.id}</div>
+                        ${article.title}
+                </a>
                 </li>
             </c:forEach>
         </ul>
     </div>
 </section>
-
 <%@ include file="../common/foot.jspf"%>

@@ -55,4 +55,24 @@ public class ArticleController {
     }
 
 
+    @GetMapping("/usr/article/detail/{id}")
+    public void showDetail(Rq rq) {
+        long id = rq.getLongParam("id", 0);
+
+        if (id == 0) {
+            rq.historyBack("번호를 입력해주세요.");
+            return;
+        }
+
+        ArticleDto articleDto = articleService.getArticleById(id);
+
+        if (articleDto == null) {
+            rq.historyBack("해당 글이 존재하지 않습니다.");
+            return;
+        }
+
+        rq.setAttr("article", articleDto);
+        rq.view("usr/article/detail");
+    }
+
 }
