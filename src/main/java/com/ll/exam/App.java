@@ -3,8 +3,8 @@ package com.ll.exam;
 public class App {
     public static String DB_HOST = "localhost";
     public static int DB_PORT = 3306;
-    public static String DB_ID = "lldj";
-    public static String DB_PASSWORD = "lldj1234";
+    public static String DB_ID = "lldjlocal";
+    public static String DB_PASSWORD = "1234";
     public static String DB_NAME = "blog";
     public static boolean isProd = false;
 
