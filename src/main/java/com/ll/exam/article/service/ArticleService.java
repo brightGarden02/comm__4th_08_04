@@ -56,4 +56,8 @@ public class ArticleService {
     public ArticleDto getNextArticle(long id) {
         return articleRepository.getNextArticle(id);
     }
+
+    public void modify(long id, String title, String body) {
+        modify(id, title, body, false);
+    }
 }
