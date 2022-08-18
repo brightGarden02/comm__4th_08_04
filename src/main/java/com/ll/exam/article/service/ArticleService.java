@@ -4,6 +4,7 @@ import com.ll.exam.annotation.Autowired;
 import com.ll.exam.annotation.Service;
 import com.ll.exam.article.repository.ArticleRepository;
 import com.ll.exam.dto.ArticleDto;
+import com.ll.exam.mymap.SecSql;
 
 import java.util.List;
 
@@ -27,5 +28,10 @@ public class ArticleService {
 
     public long write(String title, String body, boolean isBlind) {
         return articleRepository.write(title, body, isBlind);
+    }
+
+    public void modify(long id, String title, String body, boolean isBlind) {
+
+        articleRepository.modify(id, title, body, isBlind);
     }
 }
