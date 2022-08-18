@@ -41,7 +41,15 @@ public class ArticleService {
     }
 
     public ArticleDto getPrevArticle(ArticleDto articleDto) {
-        long id = articleDto.getId();
+
+        return getPrevArticle(articleDto.getId());
+    }
+
+    public ArticleDto getPrevArticle(long id) {
         return articleRepository.getPrevArticle(id);
+    }
+
+    public ArticleDto getNextArticle(long id) {
+        return articleRepository.getNextArticle(id);
     }
 }
