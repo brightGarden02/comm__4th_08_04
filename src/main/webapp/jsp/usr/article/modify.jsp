@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%@ include file="../common/head.jspf"%>
 
@@ -10,15 +11,20 @@
             form.title.focus();
             return;
         }
+
         const editor = $(form).find(".toast-ui-editor").data("data-toast-editor");
+
         const markdown = editor.getMarkdown();
         console.log(markdown);
         form.body.value = markdown.trim();
+
         if (form.body.value.length == 0) {
             alert("내용을 입력해주세요");
             editor.focus();
+
             return;
         }
+
         form.submit();
     }
 </script>

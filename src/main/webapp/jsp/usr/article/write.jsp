@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%@ include file="../common/head.jspf"%>
 
@@ -32,6 +33,7 @@
     <div class="container px-3 mx-auto">
         <h1 class="font-bold text-lg"><i class="fa-solid fa-pen"></i> 작성</h1>
         <form method="POST" onsubmit="ArticleSave__submitForm(this); return false;">
+            <input type="hidden" name="body" />
             <div class="form-control w-full">
                 <label class="label">
                     <span class="label-text">제목</span>
